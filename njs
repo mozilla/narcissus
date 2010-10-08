@@ -9,15 +9,18 @@ from subprocess import *
 from optparse import OptionParser
 
 THIS_DIR = os.path.dirname(__file__)
-NARC_JS_DIR = os.path.abspath(os.path.join(THIS_DIR, 'narcissus'))
+LIB_DIR = os.path.abspath(os.path.join(THIS_DIR, 'lib'))
 
-js_cmd = os.path.abspath(os.path.join(THIS_DIR, "js"))
+if 'NJS_SHELL' in os.environ:
+    js_cmd = os.path.abspath(os.environ['NJS_SHELL'])
+else:
+    js_cmd = os.path.abspath(os.path.join(THIS_DIR, 'js'))
 
-narc_jsdefs = os.path.join(NARC_JS_DIR, "jsdefs.js")
-narc_jslex = os.path.join(NARC_JS_DIR, "jslex.js")
-narc_jsparse = os.path.join(NARC_JS_DIR, "jsparse.js")
-narc_jsssa = os.path.join(NARC_JS_DIR, "jsssa.js")
-narc_jsexec = os.path.join(NARC_JS_DIR, "jsexec.js")
+narc_jsdefs = os.path.join(LIB_DIR, "jsdefs.js")
+narc_jslex = os.path.join(LIB_DIR, "jslex.js")
+narc_jsparse = os.path.join(LIB_DIR, "jsparse.js")
+narc_jsssa = os.path.join(LIB_DIR, "jsssa.js")
+narc_jsexec = os.path.join(LIB_DIR, "jsexec.js")
 
 def handler(signum, frame):
     print ''
