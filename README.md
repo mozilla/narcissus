@@ -8,16 +8,16 @@ Originally a proof-of-concept by [Brendan Eich](http://brendaneich.com/), Narcis
 
 To run the Narcissus shell, install the [SpiderMonkey shell](https://developer.mozilla.org/en/Introduction_to_the_JavaScript_shell) and either set the `NJS_SHELL` environment variable to the path to the `js` executable, or creating a symbolic link to `js` in the top-level Narcissus directory. Then run Narcissus with the `njs` script.
 
-  Usage: njs
-  
-  Options:
-    -h, --help            show this help message and exit
-    -f FILE, --file=FILE  JS file to load
-    -e JS_EXPS, --expression=JS_EXPS
-                          JS expression to evaluate
-    -i, --interactive     enable interactive shell
-    -H, --harmony         enable ECMAScript Harmony mode
-    -S, --ssa             enable parse-time SSA construction
+    Usage: njs
+    
+    Options:
+      -h, --help            show this help message and exit
+      -f FILE, --file=FILE  JS file to load
+      -e JS_EXPS, --expression=JS_EXPS
+                            JS expression to evaluate
+      -i, --interactive     enable interactive shell
+      -H, --harmony         enable ECMAScript Harmony mode
+      -S, --ssa             enable parse-time SSA construction
 
 # Dependencies
 
