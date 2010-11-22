@@ -588,6 +588,7 @@ ecma_5/Function/function-bind.js
 ecma_5/Function/function-caller.js
 ecma_5/Function/strict-arguments.js
 ecma_5/Global/eval-01.js
+ecma_5/Global/eval-native-callback-is-indirect.js
 ecma_5/Global/parenthesized-eval-is-direct.js
 ecma_5/JSON/cyclic-stringify.js
 ecma_5/JSON/small-codepoints.js
@@ -618,6 +619,7 @@ ecma_5/Object/15.2.3.6-redefinition-3-of-4.js
 ecma_5/Object/15.2.3.6-redefinition-4-of-4.js
 ecma_5/Object/15.2.3.7-01.js
 ecma_5/Object/extensibility-01.js
+ecma_5/Object/freeze-global-eval-const.js
 ecma_5/Object/vacuous-accessor-unqualified-name.js
 ecma_5/RegExp/15.10.7.5-01.js
 ecma_5/String/15.5.4.2.js
@@ -627,7 +629,9 @@ ecma_5/extensions/8.12.5-01.js
 ecma_5/extensions/Boolean-toSource.js
 ecma_5/extensions/Number-toSource.js
 ecma_5/extensions/String-toSource.js
+ecma_5/extensions/eval-native-callback-is-indirect.js
 ecma_5/extensions/proxy-strict.js
+ecma_5/extensions/regress-bug607284.js
 ecma_5/extensions/string-literal-getter-setter-decompilation.js
 ecma_5/misc/enumerate-undefined.js
 ecma_5/misc/global-numeric-properties.js
@@ -969,6 +973,8 @@ js1_7/block/regress-348685.js
 js1_7/block/regress-349283.js
 js1_7/block/regress-349507.js
 js1_7/block/regress-349653.js
+js1_7/block/regress-349962.js
+js1_7/block/regress-350730.js
 js1_7/block/regress-350793-01.js
 js1_7/block/regress-351497.js
 js1_7/block/regress-351794.js
@@ -981,6 +987,8 @@ js1_7/block/regress-352616.js
 js1_7/block/regress-352624.js
 js1_7/block/regress-352786.js
 js1_7/block/regress-352907.js
+js1_7/block/regress-357754.js
+js1_7/block/regress-358508.js
 js1_7/block/regress-376410.js
 js1_7/block/regress-396900.js
 js1_7/block/regress-411279.js
@@ -1028,6 +1036,7 @@ js1_7/extensions/regress-346021.js
 js1_7/extensions/regress-346642-02.js
 js1_7/extensions/regress-349619.js
 js1_7/extensions/regress-350312.js
+js1_7/extensions/regress-351070-02.js
 js1_7/extensions/regress-351102-03.js
 js1_7/extensions/regress-351102-04.js
 js1_7/extensions/regress-351102-05.js
@@ -1043,6 +1052,7 @@ js1_7/extensions/regress-355052-03.js
 js1_7/extensions/regress-355145.js
 js1_7/extensions/regress-355410.js
 js1_7/extensions/regress-355512.js
+js1_7/extensions/regress-355583.js
 js1_7/extensions/regress-363040-01.js
 js1_7/extensions/regress-363040-02.js
 js1_7/extensions/regress-366668-02.js
@@ -1054,6 +1064,8 @@ js1_7/extensions/regress-379566.js
 js1_7/extensions/regress-380933.js
 js1_7/extensions/regress-381301.js
 js1_7/extensions/regress-381303.js
+js1_7/extensions/regress-387955-01.js
+js1_7/extensions/regress-387955-02.js
 js1_7/extensions/regress-392308.js
 js1_7/extensions/regress-429266.js
 js1_7/extensions/regress-455982-01.js
@@ -1130,6 +1142,8 @@ js1_7/regress/regress-355832-02.js
 js1_7/regress/regress-361566.js
 js1_7/regress/regress-363040-01.js
 js1_7/regress/regress-363040-02.js
+js1_7/regress/regress-369666-01.js
+js1_7/regress/regress-369666-02.js
 js1_7/regress/regress-372331.js
 js1_7/regress/regress-373827-01.js
 js1_7/regress/regress-373827-02.js
@@ -1139,6 +1153,7 @@ js1_7/regress/regress-385133-02.js
 js1_7/regress/regress-385393-05.js
 js1_7/regress/regress-387951.js
 js1_7/regress/regress-406477.js
+js1_7/regress/regress-407727-01.js
 js1_7/regress/regress-407727-02.js
 js1_7/regress/regress-414553.js
 js1_7/regress/regress-416601.js
@@ -1254,6 +1269,7 @@ js1_8/regress/regress-465567-01.js
 js1_8/regress/regress-465688.js
 js1_8/regress/regress-466128.js
 js1_8/regress/regress-466787.js
+js1_8/regress/regress-467495-02.js
 js1_8/regress/regress-467495-03.js
 js1_8/regress/regress-467495-05.js
 js1_8/regress/regress-468711.js
@@ -1367,6 +1383,7 @@ js1_8_1/regress/regress-522123.js
 js1_8_1/regress/regress-524264.js
 js1_8_1/regress/regress-530879.js
 js1_8_1/strict/12.2.1.js
+js1_8_1/strict/8.7.2.js
 js1_8_1/strict/generator-eval-arguments.js
 js1_8_1/strict/let-block-eval-arguments.js
 js1_8_1/trace/math-trace-tests.js
@@ -1390,6 +1407,7 @@ js1_8_5/regress/regress-541255-3.js
 js1_8_5/regress/regress-541255-4.js
 js1_8_5/regress/regress-546615.js
 js1_8_5/regress/regress-555246-0.js
+js1_8_5/regress/regress-555246-1.js
 js1_8_5/regress/regress-560101.js
 js1_8_5/regress/regress-560998-1.js
 js1_8_5/regress/regress-563210.js
@@ -1425,4 +1443,3 @@ narcissus/../ecma/Date/dst-offset-caching-7-of-8.js
 narcissus/../ecma/Date/dst-offset-caching-8-of-8.js
 narcissus/../ecma_3/Date/15.9.5.4.js
 narcissus/../ecma_3/Date/regress-452786.js
-
