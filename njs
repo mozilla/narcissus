@@ -41,6 +41,10 @@ if __name__ == '__main__':
             help='enable ECMAScript Harmony mode')
     op.add_option('-P', '--parse-only', dest='js_parseonly', action='store_true',
             help='stop after the parsing stage and output pretty-printed source code')
+    op.add_option('-3', '--ecma3-only', dest='js_ecma3only', action='store_true',
+            help='restrict source language to ECMA-262 Edition 3')
+    op.add_option('-p', '--paren-free', dest='js_parenfree', action='store_true',
+            help='use experimental paren-free syntax')
 
     (options, args) = op.parse_args()
 
@@ -48,6 +52,12 @@ if __name__ == '__main__':
 
     if options.js_harmony:
         cmd += 'Narcissus.options.version = "harmony"; '
+
+    if options.js_ecma3only:
+        cmd += 'Narcissus.options.ecma3OnlyMode = true; '
+
+    if options.js_parenfree:
+        cmd += 'Narcissus.options.parenFreeMode = true; '
 
     if options.js_exps:
         for exp in options.js_exps:
