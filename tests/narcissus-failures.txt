@@ -1443,3 +1443,9 @@ narcissus/../ecma/Date/dst-offset-caching-7-of-8.js
 narcissus/../ecma/Date/dst-offset-caching-8-of-8.js
 narcissus/../ecma_3/Date/15.9.5.4.js
 narcissus/../ecma_3/Date/regress-452786.js
+ecma_5/Global/direct-eval-but-not.js
+ecma_5/extensions/watchpoint-deletes-JSPropertyOp-setter.js
+ecma_5/strict/this-for-function-expression-recursion.js
+js1_8_5/regress/regress-595230-1.js
+js1_8_5/regress/regress-609617.js
+js1_8_5/regress/regress-610026.js
