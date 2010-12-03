@@ -76,8 +76,17 @@ if __name__ == '__main__':
     if (not options.js_exps) and (not options.js_files):
         options.js_interactive = True
 
+    argv = [js_cmd, '-f', narc_jsdefs, '-f', narc_jslex, '-f', narc_jsparse, '-f', narc_jsdecomp, '-f', narc_jsexec]
+
     if options.js_interactive:
         cmd += 'Narcissus.interpreter.repl();'
+        argv = ['rlwrap'] + argv
 
-    Popen([js_cmd, '-f', narc_jsdefs, '-f', narc_jslex, '-f', narc_jsparse, '-f', narc_jsdecomp, '-f', narc_jsexec, '-e', cmd]).wait()
+    argv += ['-e', cmd]
+
+    try:
+        Popen(argv).wait()
+    except OSError as e:
+        if e.errno is 2 and options.js_interactive:
+            Popen(argv[1:]).wait()
 
