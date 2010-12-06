@@ -37,6 +37,8 @@ if __name__ == '__main__':
             help='JS expression to evaluate')
     op.add_option('-i', '--interactive', dest='js_interactive', action='store_true',
             help='enable interactive shell')
+    op.add_option('-I', '--interactive-meta', dest='js_interactive_meta', action='store_true',
+            help='load Narcissus but run interactive SpiderMonkey shell')
     op.add_option('-H', '--harmony', dest='js_harmony', action='store_true',
             help='enable ECMAScript Harmony mode')
     op.add_option('-P', '--parse-only', dest='js_parseonly', action='store_true',
@@ -78,11 +80,13 @@ if __name__ == '__main__':
 
     argv = [js_cmd, '-f', narc_jsdefs, '-f', narc_jslex, '-f', narc_jsparse, '-f', narc_jsdecomp, '-f', narc_jsexec]
 
-    if options.js_interactive:
-        cmd += 'Narcissus.interpreter.repl();'
-        argv = ['rlwrap'] + argv
-
-    argv += ['-e', cmd]
+    if options.js_interactive_meta:
+        argv += ['-e', cmd, '-i']
+    else:
+        if options.js_interactive:
+            cmd += 'Narcissus.interpreter.repl();'
+            argv = ['rlwrap'] + argv
+        argv += ['-e', cmd]
 
     try:
         Popen(argv).wait()
