@@ -1,0 +1,40 @@
+#!/bin/sh
+
+# Root of the narcissus tree
+NJS_HOME=`dirname $0`
+NJS_HOME=`(cd $NJS_HOME; pwd)`
+
+# Directory containing SpiderMonkey build
+SHELL_HOME=`dirname $NJS_SHELL`
+SHELL_HOME=`(cd $SHELL_HOME; pwd)`
+
+# Directory containing the test harness
+TESTS_HOME=$SHELL_HOME/../tests
+if [ ! -d $SHELL_HOME/../tests ]; then
+    echo "The js executable must be in a child directory of the SpiderMonkey source tree."
+    echo "See https://github.com/mozilla/narcissus/wiki for more information."
+    exit 1
+fi
+TESTS_HOME=`(cd $TESTS_HOME; pwd)`
+
+# Create symlinks to be able to run njs from SpiderMonkey build directory.
+# This is unfortunately necessary because the SpiderMonkey test harness
+# looks for configuration information in the same directory as the executable.
+if [ ! -h $SHELL_HOME/lib ]; then
+    echo "jstests: creating symlink to Narcissus sources at $SHELL_HOME/lib"
+    ln -s $NJS_HOME/lib $SHELL_HOME/lib
+fi
+
+if [ ! -h $SHELL_HOME/njs ]; then
+    echo "jstests: creating symlink to Narcissus executable at $SHELL_HOME/njs"
+    ln -s $NJS_HOME/njs $SHELL_HOME/njs
+fi
+
+# Run the tests from the tests directory.
+cd $TESTS_HOME
+
+if [ $# -gt 0 ]; then
+    exec python jstests.py -s -o -d -j 4 $SHELL_HOME/njs $*
+else
+    exec python jstests.py -d -j 4 $SHELL_HOME/njs -x $NJS_HOME/xfail/narcissus-failures.txt
+fi
