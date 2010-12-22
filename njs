@@ -20,6 +20,7 @@ narc_jsdefs = os.path.join(LIB_DIR, "jsdefs.js")
 narc_jslex = os.path.join(LIB_DIR, "jslex.js")
 narc_jsparse = os.path.join(LIB_DIR, "jsparse.js")
 narc_jsdecomp = os.path.join(LIB_DIR, "jsdecomp.js");
+narc_jsresolve = os.path.join(LIB_DIR, "jsresolve.js");
 narc_jsexec = os.path.join(LIB_DIR, "jsexec.js")
 
 def handler(signum, frame):
@@ -78,7 +79,7 @@ if __name__ == '__main__':
     if (not options.js_exps) and (not options.js_files):
         options.js_interactive = True
 
-    argv = [js_cmd, '-f', narc_jsdefs, '-f', narc_jslex, '-f', narc_jsparse, '-f', narc_jsdecomp, '-f', narc_jsexec]
+    argv = [js_cmd, '-f', narc_jsdefs, '-f', narc_jslex, '-f', narc_jsparse, '-f', narc_jsdecomp, '-f', narc_jsresolve, '-f', narc_jsexec]
 
     if options.js_interactive_meta:
         argv += ['-e', cmd, '-i']
