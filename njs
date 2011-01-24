@@ -40,6 +40,8 @@ if __name__ == '__main__':
             help='enable interactive shell')
     op.add_option('-I', '--interactive-meta', dest='js_interactive_meta', action='store_true',
             help='load Narcissus but run interactive SpiderMonkey shell')
+    op.add_option('-E', '--expression-meta', dest='js_exps_meta', action='append',
+            help='expression to evaluate with SpiderMonkey after loading Narcissus')
     op.add_option('-H', '--harmony', dest='js_harmony', action='store_true',
             help='enable ECMAScript Harmony mode')
     op.add_option('-P', '--parse-only', dest='js_parseonly', action='store_true',
@@ -74,14 +76,20 @@ if __name__ == '__main__':
             if options.js_parseonly:
                 cmd += 'print(Narcissus.decompiler.pp(Narcissus.parser.parse(snarf("%(file)s"), "%(file)s", 1))); ' % { 'file':file }
             else:
-                cmd += 'Narcissus.interpreter.evaluate(snarf("%(file)s"), "%(file)s", 1); ' % { 'file':file }
+                cmd += 'Narcissus.interpreter.test(function(){Narcissus.interpreter.evaluate(snarf("%(file)s"), "%(file)s", 1);}) || quit(1);' % { 'file':file }
 
     if (not options.js_exps) and (not options.js_files):
         options.js_interactive = True
 
     argv = [js_cmd, '-f', narc_jsdefs, '-f', narc_jslex, '-f', narc_jsparse, '-f', narc_jsdecomp, '-f', narc_jsresolve, '-f', narc_jsexec]
 
-    if options.js_interactive_meta:
+    if options.js_exps_meta:
+        argv += ['-e', cmd]
+        for exp in options.js_exps_meta:
+            argv += ['-e', exp]
+        if options.js_interactive_meta:
+            argv += ['-i']
+    elif options.js_interactive_meta:
         argv += ['-e', cmd, '-i']
     else:
         if options.js_interactive:
@@ -90,8 +98,9 @@ if __name__ == '__main__':
         argv += ['-e', cmd]
 
     try:
-        Popen(argv).wait()
+        retcode = Popen(argv).wait()
     except OSError as e:
         if e.errno is 2 and options.js_interactive:
-            Popen(argv[1:]).wait()
+            retcode = Popen(argv[1:]).wait()
 
+    exit(retcode)
