@@ -1,0 +1,6 @@
+{
+  "name": "narcissus",
+  "version": "0.1.0",
+  "author": "Mozilla",
+  "directories": {"lib": "./lib"}
+}
