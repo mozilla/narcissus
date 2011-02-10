@@ -15,6 +15,7 @@ Documentation can be found on the [Narcissus wiki](https://github.com/mozilla/na
 * Andreas Gal
 * Shu-yu Guo
 * Dave Herman
+* Bruno Jouhier
 * Gregor Richards
 * Dimitris Vardoulakis
 * Patrick Walton
