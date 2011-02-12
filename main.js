@@ -41,7 +41,24 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-exports.definitions = require("./lib/definitions");
-exports.lexer = require("./lib/lexer");
-exports.parser = require("./lib/parser");
-exports.decompiler = require("./lib/decompiler");
+var fs = require('fs');
+var path = require('path');
+
+function read(basename) {
+    var filename = path.join(__dirname, 'lib', basename + '.js');
+    return fs.readFileSync(filename, 'utf8');
+};
+
+(function() {
+    var Narcissus;
+
+    eval(read('jsdefs'));
+    eval(read('jslex'));
+    eval(read('jsparse'));
+    eval(read('jsdecomp'));
+
+    exports.definitions = Narcissus.definitions;
+    exports.lexer = Narcissus.lexer;
+    exports.parser = Narcissus.parser;
+    exports.decompiler = Narcissus.decompiler;
+})();
