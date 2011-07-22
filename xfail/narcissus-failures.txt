@@ -295,8 +295,6 @@ ecma/Date/15.9.5.11-2.js
 ecma/Date/15.9.5.11-4.js
 ecma/Date/15.9.5.12-2.js
 ecma/Date/15.9.5.12-4.js
-ecma/Date/15.9.5.12-5.js
-ecma/Date/15.9.5.12-6.js
 ecma/Date/15.9.5.16.js
 ecma/Date/15.9.5.18.js
 ecma/Date/15.9.5.2-2-n.js
@@ -306,8 +304,6 @@ ecma/Date/15.9.5.22-2.js
 ecma/Date/15.9.5.23-3-n.js
 ecma/Date/15.9.5.3-1-n.js
 ecma/Date/15.9.5.4-2-n.js
-ecma/Date/15.9.5.5.js
-ecma/Date/15.9.5.6.js
 ecma/Date/15.9.5.8.js
 ecma/Date/15.9.5.9.js
 ecma/Date/dst-offset-caching-1-of-8.js
