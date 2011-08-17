@@ -51,6 +51,8 @@ if __name__ == '__main__':
             help='restrict source language to ECMA-262 Edition 3')
     op.add_option('-p', '--paren-free', dest='js_parenfree', action='store_true',
             help='use experimental paren-free syntax')
+    op.add_option('-d', '--desugar', dest='js_desugar', action='store_true',
+            help='desugar SpiderMonkey language extensions')
 
     (options, args) = op.parse_args()
 
@@ -64,6 +66,9 @@ if __name__ == '__main__':
 
     if options.js_parenfree:
         cmd += 'Narcissus.options.parenFreeMode = true; '
+
+    if options.js_desugar:
+        cmd += 'Narcissus.options.desugarExtensions = true; '
 
     if options.js_exps:
         for exp in options.js_exps:
