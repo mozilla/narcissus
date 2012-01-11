@@ -44,12 +44,10 @@ if __name__ == '__main__':
             help='load Narcissus but run interactive SpiderMonkey shell')
     op.add_option('-E', '--expression-meta', dest='js_exps_meta', action='append',
             help='expression to evaluate with SpiderMonkey after loading Narcissus')
-    op.add_option('-H', '--harmony', dest='js_harmony', action='store_true',
-            help='enable ECMAScript Harmony mode')
     op.add_option('-P', '--parse-only', dest='js_parseonly', action='store_true',
             help='stop after the parsing stage and output pretty-printed source code')
-    op.add_option('-3', '--ecma3-only', dest='js_ecma3only', action='store_true',
-            help='restrict source language to ECMA-262 Edition 3')
+    op.add_option('-w', '--web-compatible', dest='js_webcompatible', action='store_true',
+            help='disable non-standard Mozilla extensions')
     op.add_option('-p', '--paren-free', dest='js_parenfree', action='store_true',
             help='use experimental paren-free syntax')
     op.add_option('-d', '--desugar', dest='js_desugar', action='store_true',
@@ -59,11 +57,8 @@ if __name__ == '__main__':
 
     cmd = ""
 
-    if options.js_harmony:
-        cmd += 'Narcissus.options.version = "harmony"; '
-
-    if options.js_ecma3only:
-        cmd += 'Narcissus.options.ecma3OnlyMode = true; '
+    if options.js_webcompatible:
+        cmd += 'Narcissus.options.mozillaMode = false; '
 
     if options.js_parenfree:
         cmd += 'Narcissus.options.parenFreeMode = true; '
