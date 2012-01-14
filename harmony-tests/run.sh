@@ -15,7 +15,7 @@ SUCCEED_PASS=0
 SUCCEED_FAIL=0
 
 for f in harmony-tests/succeed/*.js ; do
-    ./njs -H -f $f >/dev/null 2>&1
+    ./njs -f $f >/dev/null 2>&1
     if [ $? -eq 0 ]; then
         SUCCEED_PASS=$(($SUCCEED_PASS + 1))
     else
@@ -35,7 +35,7 @@ FAIL_RESOLVE_PASS=0
 FAIL_RESOLVE_FAIL=0
 
 for f in harmony-tests/fail-resolve/*.js ; do
-    ./njs -H -E "Narcissus.resolver.resolve(Narcissus.parser.parse(snarf('$f')),Narcissus.interpreter.globalStaticEnv)" >/dev/null 2>&1
+    ./njs -E "Narcissus.resolver.resolve(Narcissus.parser.parse(snarf('$f')),Narcissus.interpreter.globalStaticEnv)" >/dev/null 2>&1
     if [ $? -eq 0 ]; then
         FAIL_RESOLVE_FAIL=$((FAIL_RESOLVE_FAIL + 1))
         FAILURES="$FAILURES $f"
@@ -55,7 +55,7 @@ FAIL_EXECUTE_PASS=0
 FAIL_EXECUTE_FAIL=0
 
 for f in harmony-tests/fail-execute ; do
-    ./njs -H -f $f >/dev/null 2>&1
+    ./njs -f $f >/dev/null 2>&1
     if [ $? -eq 0 ]; then
         FAIL_EXECUTE_FAIL=$(($FAIL_EXECUTE_FAIL + 1))
         FAILURES="$FAILURES $f"
