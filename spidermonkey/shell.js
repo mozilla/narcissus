@@ -61,6 +61,10 @@
         return read('../lib/' + moduleName + '.js');
     });
 
+    var evalWithLocation = global.evalWithLocation || function evalWithLocation(src) {
+        return (0,eval)(src);
+    };
+
     // defines the init function in this local scope
     var init = evalWithLocation(read('./init.js'), "init.js", 1);
 
