@@ -9,21 +9,14 @@ from subprocess import *
 from optparse import OptionParser
 
 THIS_DIR = os.path.dirname(__file__)
-LIB_DIR = os.path.abspath(os.path.join(THIS_DIR, 'lib'))
+SPIDERMONKEY_DIR = os.path.abspath(os.path.join(THIS_DIR, 'spidermonkey'))
 
 if 'NJS_SHELL' in os.environ:
     js_cmd = os.path.abspath(os.environ['NJS_SHELL'])
 else:
     js_cmd = os.path.abspath(os.path.join(THIS_DIR, 'js'))
 
-narc_jsdefs = os.path.join(LIB_DIR, "jsdefs.js")
-narc_jslex = os.path.join(LIB_DIR, "jslex.js")
-narc_jsparse = os.path.join(LIB_DIR, "jsparse.js")
-narc_jsdecomp = os.path.join(LIB_DIR, "jsdecomp.js")
-narc_jsdesugar = os.path.join(LIB_DIR, "jsdesugar.js")
-narc_jsresolve = os.path.join(LIB_DIR, "jsresolve.js")
-narc_jsbytecode = os.path.join(LIB_DIR, "jsbytecode.js")
-narc_jsexec = os.path.join(LIB_DIR, "jsexec.js")
+narc_shell = os.path.join(SPIDERMONKEY_DIR, "shell.js")
 
 def handler(signum, frame):
     print ''
@@ -83,7 +76,7 @@ if __name__ == '__main__':
     if (not options.js_exps) and (not options.js_files):
         options.js_interactive = True
 
-    argv = [js_cmd, '-f', narc_jsdefs, '-f', narc_jslex, '-f', narc_jsparse, '-f', narc_jsdecomp, '-f', narc_jsdesugar, '-f', narc_jsresolve, '-f', narc_jsbytecode, '-f', narc_jsexec]
+    argv = [js_cmd, '-f', narc_shell]
 
     if options.js_exps_meta:
         argv += ['-e', cmd]
