@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Root of the narcissus tree
 NJS_HOME=`dirname $0`
