@@ -58,7 +58,7 @@
     ];
 
     var moduleSources = moduleNames.map(function(moduleName) {
-        return read('../lib/' + moduleName + '.js');
+        return readRelativeToScript('../lib/' + moduleName + '.js');
     });
 
     var evalWithLocation = global.evalWithLocation || function evalWithLocation(src) {
@@ -66,7 +66,7 @@
     };
 
     // defines the init function in this local scope
-    var init = evalWithLocation(read('./init.js'), "init.js", 1);
+    var init = evalWithLocation(readRelativeToScript('./init.js'), "init.js", 1);
 
     global.Narcissus = init(moduleNames, moduleSources, evalWithLocation, global);
 
