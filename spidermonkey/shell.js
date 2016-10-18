@@ -54,7 +54,8 @@
         "resolver",
         "desugaring",
         "bytecode",
-        "interpreter"
+        "interpreter",
+        "facetedInterpreter"
     ];
 
     var moduleSources = moduleNames.map(function(moduleName) {
