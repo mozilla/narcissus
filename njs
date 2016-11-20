@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!env python
 #
 # Narcissus 'shell' for use with jstests.py
 # Expects to be in the same directory as ./js
